@@ -1,6 +1,5 @@
 # Service pour publier sonde d'humidité dans OpenShift User Workload Monitoring
 
-
 Déployer l'application en utilisant la fonctionnalité Source To Image. 
 Peut être fait en 2 clics via la console Developer de OpenShift. Add from Git. 
 
@@ -45,6 +44,26 @@ template:
                 name: jardin-ai-config
             - secretRef:
                 name: jardin-ai-secrets
+```
+
+Permettre la compilation automatique via WebHook dans GitHub
+
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  annotations:
+    rbac.authorization.kubernetes.io/autoupdate: "true"
+  name: webhook-access-unauthenticated
+  namespace: jardin-ai
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: "system:webhook"
+subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: "system:unauthenticated"
 ```
 
 Activer User Workload Monitoring
