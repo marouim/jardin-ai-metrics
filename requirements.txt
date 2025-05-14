@@ -1,0 +1,4 @@
+flask
+requests
+apscheduler
+prometheus_client
