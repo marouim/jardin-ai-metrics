@@ -5,7 +5,6 @@ from prometheus_client import Gauge, generate_latest, CONTENT_TYPE_LATEST
 
 app = Flask(__name__)
 
-
 # Configuration via variables d'environnement
 SONDE_IP = os.getenv("SONDE_IP", "192.168.1.123")
 VALEUR_SEC = float(os.getenv("VALEUR_SEC", "835"))
